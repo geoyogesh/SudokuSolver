@@ -29,7 +29,7 @@
             <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
 
-        <Grid Grid.Row="1" Grid.Column="0" Height="300" Width="300" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="108,6,29.146,14" Grid.RowSpan="3">
+        <Grid x:Name="grdBoard" Grid.Row="1" Grid.Column="0" Height="300" Width="300" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="108,6,29.146,14" Grid.RowSpan="3">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
@@ -153,7 +153,7 @@
                 <RowDefinition Height="30"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            <Button Content="Solve" Grid.Row="0" Width="100" Height="30" HorizontalAlignment="Center" VerticalAlignment="Center" />
+            <Button x:Name="btnSolve" Content="Solve" Grid.Row="0" Width="100" Height="30" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="50,0" Click="btnSolve_Click" />
             <ListBox Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
         </Grid>
     </Grid>
