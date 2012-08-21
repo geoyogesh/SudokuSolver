@@ -25,8 +25,6 @@ namespace SudokuSolver.WPF
         public MainWindow()
         {
             InitializeComponent();
-
-
         }
 
         private void btnSolve_Click(object sender, RoutedEventArgs e)
@@ -96,27 +94,70 @@ namespace SudokuSolver.WPF
                 }
             }
 
+            UpdateTooltip();
 
             while (true)
             {
-                var boardcells = ApplyChecks();
-                if (boardcells.Count != 0)
+            var boardcells = ApplyChecks();
+            if (boardcells.Count != 0)
+            {
+                foreach (var boardcell in boardcells)
                 {
-                    foreach (var boardcell in boardcells)
-                    {
-                        board[boardcell.Row, boardcell.Column, 0] = boardcell.Value;
-                        setProbability(boardcell);
-                    }
-                }
-                else
-                {
-                    return;
+                    board[boardcell.Row, boardcell.Column, 0] = boardcell.Value;
+                    updategridcell(boardcell);
+                    setProbability(boardcell);
                 }
             }
+            else
+            {
+                break;
+            }
+            }
+
+            UpdateTooltip();
+
+
+        }
+
+        //needs optimization
+        private void updategridcell(BoardCell boardcell)
+        {
+            for (int i = 0; i < grdBoard.Children.Count; i++)
+            {
+                var row = (int)(i / 9);
+                var col = i % 9;
+                if ((row == boardcell.Row) && (col == boardcell.Column))
+                {
+                    var tx = (grdBoard.Children[i] as TextBox);
+                    tx.Text = board[row, col, 0].ToString();
+                }
+            }
+        }
 
 
 
+        private void UpdateTooltip()
+        {
+            for (int i = 0; i < grdBoard.Children.Count; i++)
+            {
+                var row = (int)(i / 9);
+                var col = i % 9;
+                var tx = (grdBoard.Children[i] as TextBox);
+                tx.ToolTip = "";
+                for (int j = 1; j < 10; j++)
+                {
+                    if (board[row, col, j] == 0)
+                    {
+                        tx.ToolTip = tx.ToolTip.ToString() + 0 + "  ";
+                    }
+                    else if (board[row, col, j] == 1)
+                    {
+                        tx.ToolTip = tx.ToolTip.ToString() + j + "  ";
+                    }
 
+                }
+
+            }
         }
 
         private List<BoardCell> ApplyChecks()
@@ -126,7 +167,7 @@ namespace SudokuSolver.WPF
             //row checking
             for (int i = 1; i < 10; i++)
             {
-                
+
                 for (int j = 0; j < 9; j++)
                 {
                     int probcount = 0;
@@ -138,23 +179,127 @@ namespace SudokuSolver.WPF
                             probcount += 1;
                             cell = new BoardCell
                             {
-                                Row=j,
-                                Column=k,
-                                Value=i
+                                Row = j,
+                                Column = k,
+                                Value = i
                             };
                         }
                     }
                     if (probcount == 1)
                     {
-                        boardcells.Add(cell);
+                        if (board[cell.Row, cell.Column, 0] == 0)
+                        {
+                            boardcells.Add(cell);
+                        }
                     }
                 }
             }
-            
+
+            //Column checking
+            for (int i = 1; i < 10; i++)
+            {
+                for (int j = 0; j < 9; j++)
+                {
+                    int probcount = 0;
+                    BoardCell cell = null;
+                    for (int k = 0; k < 9; k++)
+                    {
+                        if (board[k, j, i] == 1)
+                        {
+                            probcount += 1;
+                            cell = new BoardCell
+                            {
+                                Row = k,
+                                Column = j,
+                                Value = i
+                            };
+                        }
+                    }
+                    if (probcount == 1)
+                    {
+                        if (board[cell.Row, cell.Column, 0] == 0)
+                        {
+                            boardcells.Add(cell);
+                        }
+                    }
+                }
+            }
+
+
+            //Grid checking
+            for (int k = 1; k < 10; k++)
+            {
+                for (int row = 0; row < 9; row += 3)
+                {
+                    for (int col = 0; col < 9; col += 3)
+                    {
+                        int rowstart = row - (row % 3);
+                        int colstart = col - (col % 3);
+
+                        int probcount = 0;
+                        BoardCell cell = null;
+
+                        for (int i = rowstart; i < (rowstart + 3); i++)
+                        {
+                            for (int j = colstart; j < (colstart + 3); j++)
+                            {
+                                if (board[i, j, k] == 1)
+                                {
+                                    probcount += 1;
+                                    cell = new BoardCell
+                                    {
+                                        Row = i,
+                                        Column = j,
+                                        Value = k
+                                    };
+                                }
+
+
+                            }
+                        }
+
+                        if (probcount == 1)
+                        {
+                            if (board[cell.Row, cell.Column, 0] == 0)
+                            {
+                                boardcells.Add(cell);
+                            }
+                        }
+                    }
+                }
+            }
+
+            for (int i = 0; i < 9; i++)
+            {
+                for (int j = 0; j < 9; j++)
+                {
+                    int probcount = 0;
+                    BoardCell cell = null;
+                    for (int k = 1; k < 10; k++)
+                    {
+                        if (board[i, j, k] == 1)
+                        {
+                            probcount += 1;
+                            cell = new BoardCell
+                            {
+                                Row = i,
+                                Column = j,
+                                Value = k
+                            };
+                        }
+                    }
+                    if (probcount == 1)
+                    {
+                        if (board[cell.Row, cell.Column, 0] == 0)
+                        {
+                            boardcells.Add(cell);
+                        }
+                    }
+                }
+            }
 
 
             return boardcells;
-
         }
 
         private void setProbability(BoardCell boardcell)
