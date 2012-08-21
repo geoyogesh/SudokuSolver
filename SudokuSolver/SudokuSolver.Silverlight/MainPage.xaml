@@ -1,0 +1,163 @@
+﻿<UserControl x:Class="SudokuSolver.Silverlight.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    d:DesignHeight="300" d:DesignWidth="400">
+
+    <Grid x:Name="LayoutRoot" Background="White">
+            <Grid.Resources>
+                <Style TargetType="TextBox" x:Key="NumbertextBox">
+                    <Setter Property="HorizontalAlignment" Value="Stretch"/>
+                    <Setter Property="VerticalAlignment" Value="Stretch"/>
+                    <Setter Property="MaxLength" Value="1"/>
+                    <Setter Property="FontSize" Value="20"/>
+                    <Setter Property="TextAlignment" Value="Center"/>
+                </Style>
+                <Style x:Key="Color1NumbertextBox" TargetType="TextBox" BasedOn="{StaticResource NumbertextBox}">
+                    <Setter Property="Background" Value="#FF9AC0CD"/>
+                </Style>
+                <Style x:Key="Color2NumbertextBox" TargetType="TextBox" BasedOn="{StaticResource NumbertextBox}">
+                    <Setter Property="Background" Value="#FF50A6C2"/>
+                </Style>
+            </Grid.Resources>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="200"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="50"/>
+            </Grid.RowDefinitions>
+
+            <Grid x:Name="grdBoard" Grid.Row="1" Grid.Column="0" Height="300" Width="300" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="108,6,29.146,14" Grid.RowSpan="3">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <!--1st Row-->
+                <TextBox Grid.Row="0" Grid.Column="0" Style="{StaticResource Color1NumbertextBox}" />
+                <TextBox Grid.Row="0" Grid.Column="1" Style="{StaticResource Color1NumbertextBox}" />
+                <TextBox Grid.Row="0" Grid.Column="2" Style="{StaticResource Color1NumbertextBox}" />
+                <TextBox Grid.Row="0" Grid.Column="3" Style="{StaticResource Color2NumbertextBox}" />
+                <TextBox Grid.Row="0" Grid.Column="4" Style="{StaticResource Color2NumbertextBox}" />
+                <TextBox Grid.Row="0" Grid.Column="5" Style="{StaticResource Color2NumbertextBox}" />
+                <TextBox Grid.Row="0" Grid.Column="6" Style="{StaticResource Color1NumbertextBox}" />
+                <TextBox Grid.Row="0" Grid.Column="7" Style="{StaticResource Color1NumbertextBox}" />
+                <TextBox Grid.Row="0" Grid.Column="8" Style="{StaticResource Color1NumbertextBox}" />
+                <!--2nd Row-->
+                <TextBox Grid.Row="1" Grid.Column="0" Style="{StaticResource Color1NumbertextBox}" />
+                <TextBox Grid.Row="1" Grid.Column="1" Style="{StaticResource Color1NumbertextBox}" />
+                <TextBox Grid.Row="1" Grid.Column="2" Style="{StaticResource Color1NumbertextBox}" />
+                <TextBox Grid.Row="1" Grid.Column="3" Style="{StaticResource Color2NumbertextBox}" />
+                <TextBox Grid.Row="1" Grid.Column="4" Style="{StaticResource Color2NumbertextBox}" />
+                <TextBox Grid.Row="1" Grid.Column="5" Style="{StaticResource Color2NumbertextBox}" />
+                <TextBox Grid.Row="1" Grid.Column="6" Style="{StaticResource Color1NumbertextBox}" />
+                <TextBox Grid.Row="1" Grid.Column="7" Style="{StaticResource Color1NumbertextBox}" />
+                <TextBox Grid.Row="1" Grid.Column="8" Style="{StaticResource Color1NumbertextBox}" />
+                <!--3rd Row-->
+                <TextBox Grid.Row="2" Grid.Column="0" Style="{StaticResource Color1NumbertextBox}" />
+                <TextBox Grid.Row="2" Grid.Column="1" Style="{StaticResource Color1NumbertextBox}" />
+                <TextBox Grid.Row="2" Grid.Column="2" Style="{StaticResource Color1NumbertextBox}" />
+                <TextBox Grid.Row="2" Grid.Column="3" Style="{StaticResource Color2NumbertextBox}" />
+                <TextBox Grid.Row="2" Grid.Column="4" Style="{StaticResource Color2NumbertextBox}" />
+                <TextBox Grid.Row="2" Grid.Column="5" Style="{StaticResource Color2NumbertextBox}" />
+                <TextBox Grid.Row="2" Grid.Column="6" Style="{StaticResource Color1NumbertextBox}" />
+                <TextBox Grid.Row="2" Grid.Column="7" Style="{StaticResource Color1NumbertextBox}" />
+                <TextBox Grid.Row="2" Grid.Column="8" Style="{StaticResource Color1NumbertextBox}" />
+                <!--4rd Row-->
+                <TextBox Grid.Row="3" Grid.Column="0" Style="{StaticResource Color2NumbertextBox}" />
+                <TextBox Grid.Row="3" Grid.Column="1" Style="{StaticResource Color2NumbertextBox}" />
+                <TextBox Grid.Row="3" Grid.Column="2" Style="{StaticResource Color2NumbertextBox}" />
+                <TextBox Grid.Row="3" Grid.Column="3" Style="{StaticResource Color1NumbertextBox}" />
+                <TextBox Grid.Row="3" Grid.Column="4" Style="{StaticResource Color1NumbertextBox}" />
+                <TextBox Grid.Row="3" Grid.Column="5" Style="{StaticResource Color1NumbertextBox}" />
+                <TextBox Grid.Row="3" Grid.Column="6" Style="{StaticResource Color2NumbertextBox}" />
+                <TextBox Grid.Row="3" Grid.Column="7" Style="{StaticResource Color2NumbertextBox}" />
+                <TextBox Grid.Row="3" Grid.Column="8" Style="{StaticResource Color2NumbertextBox}" />
+
+                <!--5rd Row-->
+                <TextBox Grid.Row="4" Grid.Column="0" Style="{StaticResource Color2NumbertextBox}" />
+                <TextBox Grid.Row="4" Grid.Column="1" Style="{StaticResource Color2NumbertextBox}" />
+                <TextBox Grid.Row="4" Grid.Column="2" Style="{StaticResource Color2NumbertextBox}" />
+                <TextBox Grid.Row="4" Grid.Column="3" Style="{StaticResource Color1NumbertextBox}" />
+                <TextBox Grid.Row="4" Grid.Column="4" Style="{StaticResource Color1NumbertextBox}" />
+                <TextBox Grid.Row="4" Grid.Column="5" Style="{StaticResource Color1NumbertextBox}" />
+                <TextBox Grid.Row="4" Grid.Column="6" Style="{StaticResource Color2NumbertextBox}" />
+                <TextBox Grid.Row="4" Grid.Column="7" Style="{StaticResource Color2NumbertextBox}" />
+                <TextBox Grid.Row="4" Grid.Column="8" Style="{StaticResource Color2NumbertextBox}" />
+
+                <!--6rd Row-->
+                <TextBox Grid.Row="5" Grid.Column="0" Style="{StaticResource Color2NumbertextBox}" />
+                <TextBox Grid.Row="5" Grid.Column="1" Style="{StaticResource Color2NumbertextBox}" />
+                <TextBox Grid.Row="5" Grid.Column="2" Style="{StaticResource Color2NumbertextBox}" />
+                <TextBox Grid.Row="5" Grid.Column="3" Style="{StaticResource Color1NumbertextBox}" />
+                <TextBox Grid.Row="5" Grid.Column="4" Style="{StaticResource Color1NumbertextBox}" />
+                <TextBox Grid.Row="5" Grid.Column="5" Style="{StaticResource Color1NumbertextBox}" />
+                <TextBox Grid.Row="5" Grid.Column="6" Style="{StaticResource Color2NumbertextBox}" />
+                <TextBox Grid.Row="5" Grid.Column="7" Style="{StaticResource Color2NumbertextBox}" />
+                <TextBox Grid.Row="5" Grid.Column="8" Style="{StaticResource Color2NumbertextBox}" />
+
+                <!--7rd Row-->
+                <TextBox Grid.Row="6" Grid.Column="0" Style="{StaticResource Color1NumbertextBox}" />
+                <TextBox Grid.Row="6" Grid.Column="1" Style="{StaticResource Color1NumbertextBox}" />
+                <TextBox Grid.Row="6" Grid.Column="2" Style="{StaticResource Color1NumbertextBox}" />
+                <TextBox Grid.Row="6" Grid.Column="3" Style="{StaticResource Color2NumbertextBox}" />
+                <TextBox Grid.Row="6" Grid.Column="4" Style="{StaticResource Color2NumbertextBox}" />
+                <TextBox Grid.Row="6" Grid.Column="5" Style="{StaticResource Color2NumbertextBox}" />
+                <TextBox Grid.Row="6" Grid.Column="6" Style="{StaticResource Color1NumbertextBox}" />
+                <TextBox Grid.Row="6" Grid.Column="7" Style="{StaticResource Color1NumbertextBox}" />
+                <TextBox Grid.Row="6" Grid.Column="8" Style="{StaticResource Color1NumbertextBox}" />
+
+                <!--8rd Row-->
+                <TextBox Grid.Row="7" Grid.Column="0" Style="{StaticResource Color1NumbertextBox}" />
+                <TextBox Grid.Row="7" Grid.Column="1" Style="{StaticResource Color1NumbertextBox}" />
+                <TextBox Grid.Row="7" Grid.Column="2" Style="{StaticResource Color1NumbertextBox}" />
+                <TextBox Grid.Row="7" Grid.Column="3" Style="{StaticResource Color2NumbertextBox}" />
+                <TextBox Grid.Row="7" Grid.Column="4" Style="{StaticResource Color2NumbertextBox}" />
+                <TextBox Grid.Row="7" Grid.Column="5" Style="{StaticResource Color2NumbertextBox}" />
+                <TextBox Grid.Row="7" Grid.Column="6" Style="{StaticResource Color1NumbertextBox}" />
+                <TextBox Grid.Row="7" Grid.Column="7" Style="{StaticResource Color1NumbertextBox}" />
+                <TextBox Grid.Row="7" Grid.Column="8" Style="{StaticResource Color1NumbertextBox}" />
+
+                <!--9rd Row-->
+                <TextBox Grid.Row="8" Grid.Column="0" Style="{StaticResource Color1NumbertextBox}" />
+                <TextBox Grid.Row="8" Grid.Column="1" Style="{StaticResource Color1NumbertextBox}" />
+                <TextBox Grid.Row="8" Grid.Column="2" Style="{StaticResource Color1NumbertextBox}" />
+                <TextBox Grid.Row="8" Grid.Column="3" Style="{StaticResource Color2NumbertextBox}" />
+                <TextBox Grid.Row="8" Grid.Column="4" Style="{StaticResource Color2NumbertextBox}" />
+                <TextBox Grid.Row="8" Grid.Column="5" Style="{StaticResource Color2NumbertextBox}" />
+                <TextBox Grid.Row="8" Grid.Column="6" Style="{StaticResource Color1NumbertextBox}" />
+                <TextBox Grid.Row="8" Grid.Column="7" Style="{StaticResource Color1NumbertextBox}" />
+                <TextBox Grid.Row="8" Grid.Column="8" Style="{StaticResource Color1NumbertextBox}" />
+            </Grid>
+            <Grid Grid.Row="1" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Button x:Name="btnSolve" Content="Solve" Grid.Row="0" Width="100" Height="30" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="50,0" Click="btnSolve_Click" />
+                <ListBox Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+            </Grid>
+    </Grid>
+</UserControl>
