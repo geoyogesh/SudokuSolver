@@ -1,11 +1,14 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Web Developer Express 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SudokuSolver.WPF", "SudokuSolver.WPF\SudokuSolver.WPF.csproj", "{4DF8DE1E-F706-4B78-BFA8-C3346BB52A7E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SudokuSolver.Silverlight", "SudokuSolver.Silverlight\SudokuSolver.Silverlight.csproj", "{5C19067C-9747-4EE0-A0B8-B06A0F00BEE1}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SudokuSolver.Silverlight.Web", "SudokuSolver.Silverlight.Web\SudokuSolver.Silverlight.Web.csproj", "{931432B0-7573-484A-AA76-E09AF8F18D30}"
+	ProjectSection(ProjectDependencies) = postProject
+		{5C19067C-9747-4EE0-A0B8-B06A0F00BEE1} = {5C19067C-9747-4EE0-A0B8-B06A0F00BEE1}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
